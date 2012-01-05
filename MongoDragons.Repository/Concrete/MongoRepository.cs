@@ -12,13 +12,18 @@ namespace MongoDragons.Database.Concrete
 {
     public class MongoRepository : IRepository
     {
+        private string _databaseName = "";
         private MongoServer _provider;
-        public MongoDatabase DB { get { return this._provider.GetDatabase("dragons"); } }
+        private MongoDatabase _db { get { return this._provider.GetDatabase(_databaseName); } }
 
         public MongoRepository()
         {
             // Read the connection string from the web.config
-            _provider = MongoServer.Create(ConfigurationManager.ConnectionStrings["db"].ConnectionString);
+            string connectionString = ConfigurationManager.ConnectionStrings["db"].ConnectionString;
+
+            // Setup the provider.
+            _provider = MongoServer.Create(connectionString);
+            _databaseName = MongoUrl.Create(connectionString).DatabaseName;
         }
 
         public void Delete<T>(System.Linq.Expressions.Expression<Func<T, bool>> expression) where T : class, new()
@@ -39,12 +44,12 @@ namespace MongoDragons.Database.Concrete
             var query = Query.EQ("_id", ObjectId.Parse(value.ToString()));
 
             // Remove the object.
-            DB.GetCollection<T>(typeof(T).Name).Remove(query);
+            _db.GetCollection<T>(typeof(T).Name).Remove(query);
         }
 
         public void DeleteAll<T>() where T : class, new()
         {
-            DB.GetCollection<T>(typeof(T).Name).Drop();
+            _db.GetCollection<T>(typeof(T).Name).Drop();
         }
 
         public T Single<T>(System.Linq.Expressions.Expression<Func<T, bool>> expression) where T : class, new()
@@ -54,7 +59,7 @@ namespace MongoDragons.Database.Concrete
 
         public IQueryable<T> All<T>() where T : class, new()
         {
-            return DB.GetCollection<T>(typeof(T).Name).FindAll().AsQueryable();
+            return _db.GetCollection<T>(typeof(T).Name).FindAll().AsQueryable();
         }
 
         public IQueryable<T> All<T>(int page, int pageSize) where T : class, new()
@@ -64,7 +69,7 @@ namespace MongoDragons.Database.Concrete
 
         public void Add<T>(T item) where T : class, new()
         {
-            DB.GetCollection<T>(typeof(T).Name).Save(item);
+            _db.GetCollection<T>(typeof(T).Name).Save(item);
         }
 
         public void Add<T>(IEnumerable<T> items) where T : class, new()
