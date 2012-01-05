@@ -44,7 +44,7 @@ namespace MongoDragons
 
         private static void GenerateDragons()
         {
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < 10; i++)
             {
                 Dragon dragon = DragonManager.CreateRandom();
                 DragonManager.Save(dragon);

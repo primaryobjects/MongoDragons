@@ -7,12 +7,13 @@ namespace MongoDragons.Managers
 {
     public class HelperManager
     {
+        public static Random RandomGenerator = new Random((int)DateTime.Now.Ticks);
+
         public static string CreateRandomName(string[] firstNameList, string[] lastNameList)
         {
-            Random random = new Random((int)DateTime.Now.Ticks);
 
             // Generate a random Id from 0-99.
-            int randomId = random.Next(100);
+            int randomId = RandomGenerator.Next(100);
 
             // Pad the Id to be 2 digits (01, 10, 99, etc).
             string randomString = randomId.ToString().PadLeft(2, '0');
