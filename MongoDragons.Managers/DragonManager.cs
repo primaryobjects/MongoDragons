@@ -47,6 +47,22 @@ namespace MongoDragons.Managers
             return DbContext.Current.All<Dragon>().OrderBy(d => d.Name).ToList();
         }
 
+        public static List<Dragon> Find(string keyword)
+        {
+            List<Dragon> dragons = null;
+
+            if (keyword.Length > 0)
+            {
+                dragons = DbContext.Current.All<Dragon>().Where(d => d.Name.Contains(keyword)).OrderBy(d => d.Name).ToList();
+            }
+            else
+            {
+                dragons = GetAll();
+            }
+
+            return dragons;
+        }
+
         public static void Save(Dragon dragon)
         {
             DbContext.Current.Add(dragon);
