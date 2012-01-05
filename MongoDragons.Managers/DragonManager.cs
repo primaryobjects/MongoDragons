@@ -75,15 +75,14 @@ namespace MongoDragons.Managers
 
         public static Dragon CreateRandom()
         {
-            Random r = new Random((int)DateTime.Now.Ticks);
             Dragon dragon = new Dragon();
 
             dragon.Name = HelperManager.CreateRandomName(_firstNames, _lastNames);
-            dragon.Age = r.Next(1, 101);
+            dragon.Age = HelperManager.RandomGenerator.Next(1, 101);
             dragon.Description = "A big dragon.";
-            dragon.Gold = r.Next(1, 1001);
-            dragon.Weapon = new Breath() { Name = "Breath", Description = "A breath attack.", Type = (Breath.BreathType)r.Next(0, 6) };
-            dragon.MaxHP = r.Next(10, 21);
+            dragon.Gold = HelperManager.RandomGenerator.Next(1, 1001);
+            dragon.Weapon = new Breath() { Name = "Breath", Description = "A breath attack.", Type = (Breath.BreathType)HelperManager.RandomGenerator.Next(0, 6) };
+            dragon.MaxHP = HelperManager.RandomGenerator.Next(10, 21);
             dragon.HP = dragon.MaxHP;
 
             return dragon;
