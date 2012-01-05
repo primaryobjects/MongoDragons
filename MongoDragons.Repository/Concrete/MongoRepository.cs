@@ -80,10 +80,6 @@ namespace MongoDragons.Database.Concrete
             }
         }
 
-        public void Dispose()
-        {
-        }
-
         private object GetPropValue(object src, string propName)
         {
             return src.GetType().GetProperty(propName).GetValue(src, null);

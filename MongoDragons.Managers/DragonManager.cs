@@ -53,7 +53,7 @@ namespace MongoDragons.Managers
 
             if (keyword.Length > 0)
             {
-                dragons = DbContext.Current.All<Dragon>().Where(d => d.Name.Contains(keyword)).OrderBy(d => d.Name).ToList();
+                dragons = DbContext.Current.All<Dragon>().Where(d => d.Name.ToLower().Contains(keyword.ToLower())).OrderBy(d => d.Name).ToList();
             }
             else
             {
