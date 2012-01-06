@@ -4,7 +4,7 @@ using System.Linq.Expressions;
 
 namespace MongoDragons.Repository.Interface
 {
-    public interface IRepository
+    public interface IRepository : IDisposable
     {
         void Delete<T>(Expression<Func<T, bool>> expression) where T : class, new();
         void Delete<T>(T item) where T : class, new();

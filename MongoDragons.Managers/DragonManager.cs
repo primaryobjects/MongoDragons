@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Norm;
 using MongoDragons.Repository.Context;
 using MongoDragons.Types;
-using MongoDB;
 
 namespace MongoDragons.Managers
 {

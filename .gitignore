@@ -7,3 +7,4 @@
 *.exe.config
 *.exe.manifest
 !README.txt
+!lib/*.dll

@@ -1,12 +1,11 @@
 ﻿using System;
-using MongoDB.Bson;
+using Norm;
 
 namespace MongoDragons.Types
 {
     public class Dragon
     {
         public ObjectId Id { get; private set; }
-
         public string Name { get; set; }
         public int Age { get; set; }
         public string Description { get; set; }
