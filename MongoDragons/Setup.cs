@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using StructureMap;
 using MongoDragons.Repository.Interface;
-using MongoDragons.Database.Concrete;
+using MongoDragons.Repository.Concrete;
 
 namespace MongoDragons
 {

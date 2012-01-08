@@ -6,7 +6,7 @@ using Norm;
 using MongoDragons.Repository.Interface;
 using MongoDragons.Repository.Helpers;
 
-namespace MongoDragons.Database.Concrete
+namespace MongoDragons.Repository.Concrete
 {
     public class MongoRepository : IRepository
     {
