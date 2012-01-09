@@ -5,6 +5,7 @@ using System.Text;
 using Norm;
 using MongoDragons.Repository.Context;
 using MongoDragons.Types;
+using MongoDragons.Managers.Helpers;
 
 namespace MongoDragons.Managers
 {
@@ -73,19 +74,23 @@ namespace MongoDragons.Managers
             DbContext.Current.Delete<Dragon>(d => d.Id == dragon.Id);
         }
 
+        #region Helpers
+
         public static Dragon CreateRandom()
         {
             Dragon dragon = new Dragon();
-
             dragon.Name = HelperManager.CreateRandomName(_firstNames, _lastNames);
             dragon.Age = HelperManager.RandomGenerator.Next(1, 101);
             dragon.Description = "A big dragon.";
             dragon.Gold = HelperManager.RandomGenerator.Next(1, 1001);
-            dragon.Weapon = new Breath() { Name = "Breath", Description = "A breath attack.", Type = (Breath.BreathType)HelperManager.RandomGenerator.Next(0, 6) };
+            dragon.Weapon = new Breath { Name = "Breath", Description = "A breath attack.", Type = (Breath.BreathType)HelperManager.RandomGenerator.Next(0, 6) };
             dragon.MaxHP = HelperManager.RandomGenerator.Next(10, 21);
             dragon.HP = dragon.MaxHP;
+            dragon.Realm = RealmManager.CreateRandom();
 
             return dragon;
         }
+
+        #endregion
     }
 }

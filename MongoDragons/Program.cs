@@ -16,8 +16,11 @@ namespace MongoDragons
 
             while (true)
             {
+                // Search for dragons.
+                List<Dragon> dragons = DragonManager.Find(keyword);
+
                 // Display the dragons.
-                List<Dragon> dragons = DisplayDragons(keyword);
+                DisplayDragons(dragons);
 
                 // Get input from the user.
                 Console.Write("Enter text to search by or Q to quit:>");
@@ -29,13 +32,14 @@ namespace MongoDragons
             }
         }
 
-        private static List<Dragon> DisplayDragons(string keyword = "")
+        #region Helpers
+
+        private static List<Dragon> DisplayDragons(List<Dragon> dragons)
         {
-            Console.WriteLine(String.Format("{0,3} | {1,-24} | {2,3} | {3,4} | {4,3} | {5,10} | {6,8}", "Id", "Name", "Age", "Gold", "HP", "Breath", "Born"));
-            Console.WriteLine("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-");
+            Console.WriteLine(String.Format("{0,3} | {1,-17} | {2,3} | {3,4} | {4,3} | {5,10} | {6,8} | {7,5}", "Id", "Name", "Age", "Gold", "HP", "Breath", "Born", "Realm"));
+            Console.WriteLine("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-");
 
             int count = 0;
-            List<Dragon> dragons = DragonManager.Find(keyword);
             foreach (Dragon dragon in dragons)
             {
                 Console.WriteLine(String.Format("{0, 3} | {1}", ++count, dragon));
@@ -43,5 +47,7 @@ namespace MongoDragons
 
             return dragons;
         }
+
+        #endregion
     }
 }

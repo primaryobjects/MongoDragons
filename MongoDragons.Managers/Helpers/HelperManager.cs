@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace MongoDragons.Managers
+namespace MongoDragons.Managers.Helpers
 {
     public class HelperManager
     {

@@ -46,6 +46,13 @@
     <Compile Include="Breath.cs" />
     <Compile Include="Dragon.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Realm.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MongoDragons.Repository\MongoDragons.Repository.csproj">
+      <Project>{3732BBA1-6546-4ACF-9944-742FEBD0F023}</Project>
+      <Name>MongoDragons.Repository</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
