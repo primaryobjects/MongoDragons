@@ -30,6 +30,8 @@ namespace MongoDragons
                 if (keyword.ToUpper() == "Q")
                     break;
             }
+
+            Setup.Close();
         }
 
         #region Helpers

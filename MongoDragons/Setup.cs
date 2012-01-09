@@ -5,6 +5,7 @@ using System.Text;
 using StructureMap;
 using MongoDragons.Repository.Interface;
 using MongoDragons.Repository.Concrete;
+using MongoDragons.Repository.Context;
 
 namespace MongoDragons
 {
@@ -17,6 +18,17 @@ namespace MongoDragons
         {
             // Initialize our concrete database provider type.
             ObjectFactory.Initialize(x => { x.For<IRepository>().Use<MongoRepository>(); });
+        }
+
+        /// <summary>
+        /// Disposes the database provider context.
+        /// </summary>
+        public static void Close()
+        {
+            if (DbContext.IsOpen)
+            {
+                DbContext.Current.Dispose();
+            }
         }
     }
 }
